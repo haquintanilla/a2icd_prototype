@@ -195,6 +195,9 @@
       text-align: right;
       line-height: 1.65;
     }
+    /* Teléfono: en celular se puede tocar para llamar */
+    .pie-direccion a { text-decoration: none; white-space: nowrap; }
+    .pie-direccion a:hover, .pie-direccion a:focus-visible { text-decoration: underline; }
 
     .pie-legal { grid-area: legal; text-align: right; }
     .pie-legal .pie-copy { margin-top: 8px; font-size: 0.85em; }
@@ -313,7 +316,7 @@
         Mitras Centro<br>
         Monterrey, Nuevo León<br>
         México | C.P. 64460<br>
-        T: 00 0000 0000
+        T: <a href="tel:+528183487625">+52 81 8348 7625</a>
       </address>
 
       <div class="pie-legal">
