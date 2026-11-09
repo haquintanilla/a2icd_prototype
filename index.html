@@ -18,6 +18,9 @@
       --header-fondo: #ffffff;
       --header-texto: #000000;
       --texto-menu: rgba(0, 0, 0, 0.8); /* menú del header: negro al 80 % */
+      --menu-linea: #808080;   /* líneas divisorias del menú (gris de la imagen de referencia) */
+      --menu-hover: #e40000;   /* texto del menú con el cursor encima (rojo del logo) */
+      --menu-oprimido: #ffffff; /* texto del menú mientras se oprime */
 
       --naranja-hero: #e65100;
       --naranja-servicios: #f57c00;
@@ -73,28 +76,51 @@
        La imagen es más grande (1164 × 390 px) para que se vea nítida en pantallas de alta definición. */
     .marca { display: block; line-height: 0; }
     .marca img { display: block; height: 100px; width: auto; }
-    /* Menú alineado a la derecha (también en celular) */
-    nav { margin-left: auto; }
+    /* Menú alineado a la derecha (también en celular), con líneas divisorias verticales
+       entre opciones, como en la imagen de referencia. Las líneas sobresalen arriba y abajo
+       del texto (--menu-py); el margen negativo deja el texto a la altura de la base del logo. */
+    nav {
+      --menu-py: 12px;                       /* cuánto sobresalen las líneas arriba y abajo */
+      --menu-px: clamp(16px, 2.5vw, 36px);   /* espacio entre el texto y la línea */
+      margin-left: auto;
+      margin-bottom: calc(-1 * var(--menu-py));
+    }
     nav ul {
       display: flex;
-      flex-wrap: wrap;
       justify-content: flex-end;
-      gap: 8px 24px;
       margin: 0;
       padding: 0;
       list-style: none;
     }
+    nav li + li { border-left: 1px solid var(--menu-linea); }
     nav a {
+      display: block;
+      padding: var(--menu-py) var(--menu-px);
       font-weight: 500;
       color: var(--texto-menu);
       text-decoration: none;
+      white-space: nowrap;
       transition: color 0.2s;
     }
-    nav a:hover, nav a:focus-visible { color: var(--header-texto); text-decoration: underline; }
-    /* En celular, menos espacio entre enlaces para que quepan en un renglón */
+    nav li:first-child a { padding-left: 0; }
+    nav li:last-child a { padding-right: 0; }
+    /* Rojo mientras el cursor está encima (solo con mouse: en celular no hay cursor
+       y el rojo se quedaría pegado después de tocar) */
+    @media (hover: hover) {
+      nav a:hover { color: var(--menu-hover); }
+    }
+    nav a:focus-visible { color: var(--menu-hover); }
+    /* Blanco mientras se oprime */
+    nav a:active { color: var(--menu-oprimido); transition: none; }
+    /* En celular: letra y espacios un poco más chicos para que quepa en un renglón */
     @media (max-width: 720px) {
       header .contenedor { padding: 0 16px 0 8px; } /* logo más a la izquierda: 8 px */
-      nav ul { column-gap: 16px; }
+      nav {
+        --menu-py: 8px;
+        --menu-px: 2.6vw;
+        margin-top: calc(-1 * var(--menu-py));
+        font-size: min(1rem, 4.2vw);
+      }
     }
 
     /* 2. MAIN con sus 5 secciones */
