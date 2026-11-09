@@ -14,18 +14,19 @@
 - Contenido en español (México).
 
 ## Tipografía
-- Salvo que el usuario indique lo contrario, todo el sitio usa **IBM Plex Sans**:
+- Salvo que el usuario indique lo contrario, todo el sitio usa **SF Pro Display** (antes era IBM Plex Sans):
   - **Títulos** (h1 a h6): Semi Bold (**600**).
   - **Navegación** (menús y sus enlaces): Medium (**500**).
   - **Párrafos** y texto general: Regular (**400**).
   - **Excepción pedida por el usuario:** la descripción de la empresa en el footer (`.pie-descripcion`) usa Light (**300**).
-- Cárgala desde Google Fonts, solo con esos cuatro pesos (300, 400, 500 y 600), dentro del `<head>`:
+- **No subas los archivos de SF Pro** al repositorio ni al servidor: la licencia de Apple solo permite usarla para maquetas de apps de Apple, no como fuente de un sitio web.
+- SF Pro se muestra porque es la fuente del sistema en Mac, iPhone y iPad (`-apple-system`, `BlinkMacSystemFont`). En Windows y Android se usa **Inter** (licencia libre OFL, muy parecida), cargada desde Google Fonts con optical size y los pesos 300 a 600, dentro del `<head>`:
   ```html
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..600&display=swap" rel="stylesheet">
   ```
-- Fuentes de respaldo: `font-family: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;`
+- Fuentes en este orden: `font-family: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", Roboto, sans-serif;` (no pongas `system-ui` antes de Inter: en Windows mostraría Segoe UI).
 
 ## Seguridad
 - Este repositorio es **público**: nunca guardes contraseñas, claves de API ni datos privados.
