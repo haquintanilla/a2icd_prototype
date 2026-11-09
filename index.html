@@ -200,7 +200,13 @@
     .pie-direccion a:hover, .pie-direccion a:focus-visible { text-decoration: underline; }
 
     .pie-legal { grid-area: legal; text-align: right; }
-    .pie-legal .pie-copy { margin-top: 8px; font-size: 0.85em; }
+    .pie-legal .pie-descripcion {
+      max-width: 38em;
+      margin-left: auto;
+      line-height: 1.6;
+      text-wrap: pretty;
+    }
+    .pie-legal .pie-copy { margin-top: 16px; font-size: 0.85em; }
     .pie-legal a { text-decoration: none; }
     .pie-legal a:hover, .pie-legal a:focus-visible { text-decoration: underline; }
 
@@ -216,6 +222,7 @@
       .pie-marca { align-items: center; text-align: center; }
       .pie-logo { margin-bottom: 24px; }
       .pie-direccion, .pie-legal { text-align: center; }
+      .pie-legal .pie-descripcion { margin: 0 auto; }
       .pie-redes ul { justify-content: center; gap: 12px; }
       /* En celular, "Suscribir" va en su propia línea, sin la barra */
       .pie-separador { display: none; }
@@ -320,7 +327,7 @@
       </address>
 
       <div class="pie-legal">
-        <p>Descripción breve de la empresa</p>
+        <p class="pie-descripcion">Somos una empresa especializada en el desarrollo de proyectos ejecutivos de arquitectura e ingeniería. Integramos diseño, innovación y precisión técnica para transformar ideas en soluciones funcionales, eficientes y constructivamente viables.</p>
         <p class="pie-copy">© 2026 por A2 Innovación en Construcción y Diseño, S.A.&nbsp;de&nbsp;C.V.<span class="pie-separador"> | </span><a href="#">Suscribir</a></p>
       </div>
 
