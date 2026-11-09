@@ -60,9 +60,10 @@
       padding: 16px 0;
     }
     header .contenedor {
-      /* El header usa todo el ancho de la pantalla, con poco margen a los lados */
+      /* Margen a los lados: a la mitad entre el original (contenido centrado en 1100 px)
+         y 24 px. Ej.: 65 px en una pantalla de 1280 px; 225 px en una de 1920 px. */
       max-width: none;
-      padding: 0 24px;
+      padding: 0 max(20px, calc((100% - 1100px) / 4 + 20px));
       display: flex;
       flex-wrap: wrap;
       align-items: flex-end; /* textos del menú abajo, a la altura de la base del logo */
