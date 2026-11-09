@@ -62,12 +62,9 @@
       align-items: center;
       gap: 12px 32px;
     }
-    .marca {
-      font-weight: 600;
-      font-size: 1.5rem;
-      color: inherit;
-      text-decoration: none;
-    }
+    /* Logo del header (PNG con fondo transparente) */
+    .marca { display: block; line-height: 0; }
+    .marca img { display: block; height: 56px; width: auto; }
     /* Menú alineado a la derecha (también en celular) */
     nav { margin-left: auto; }
     nav ul {
@@ -249,7 +246,7 @@
   <!-- 1. HEADER -->
   <header>
     <div class="contenedor">
-      <a class="marca" href="#hero">A2ICD</a>
+      <a class="marca" href="#hero"><img src="img/logo-a2.png" alt="A2ICD" width="222" height="256"></a>
       <nav aria-label="Menú principal">
         <ul>
           <li><a href="#servicios">Servicios</a></li>
