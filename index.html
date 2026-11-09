@@ -80,8 +80,8 @@
       align-items: flex-end; /* textos del menú abajo, a la altura de la base del logo */
       gap: 12px 32px;
     }
-    /* Logo del header (PNG con fondo transparente): 100 px de alto (unos 298 px de ancho).
-       La imagen es más grande (1164 × 390 px) para que se vea nítida en pantallas de alta definición. */
+    /* Logo del header (PNG con fondo transparente): 100 px de alto (unos 300 px de ancho).
+       La imagen es más grande (1169 × 390 px) para que se vea nítida en pantallas de alta definición. */
     .marca { display: block; line-height: 0; }
     .marca img { display: block; height: 100px; width: auto; }
     /* Menú alineado a la derecha (también en celular), con líneas divisorias verticales
@@ -281,13 +281,38 @@
       .pie-legal .pie-copy a { display: block; margin-top: 4px; }
     }
   </style>
+  <script>
+    /* Al recargar la página, empezar siempre hasta arriba, con el header pegado a la barra
+       del navegador. Sin esto, el navegador regresa a donde estaba la página o salta a la
+       sección del menú que quedó en la dirección (por ejemplo #servicios).
+       Un enlace compartido a una sección (por ejemplo …/#contacto) sigue funcionando. */
+    (function () {
+      if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+      var nav = performance.getEntriesByType ? performance.getEntriesByType('navigation')[0] : null;
+      var recarga = nav ? nav.type === 'reload'
+                        : !!(performance.navigation && performance.navigation.type === 1);
+      if (!recarga) return;
+      if (location.hash) history.replaceState(null, '', location.pathname + location.search);
+      function arriba() {
+        var html = document.documentElement;
+        var antes = html.style.scrollBehavior;
+        html.style.scrollBehavior = 'auto'; /* sin animación */
+        window.scrollTo(0, 0);
+        html.style.scrollBehavior = antes;
+      }
+      arriba();
+      document.addEventListener('DOMContentLoaded', arriba);
+      window.addEventListener('load', function () { arriba(); requestAnimationFrame(arriba); });
+    })();
+  </script>
 </head>
 <body>
 
   <!-- 1. HEADER -->
   <header>
     <div class="contenedor">
-      <a class="marca" href="#hero"><img src="img/logo-a2.png?v=5" alt="A2 Innovación en Construcción y Diseño" width="1164" height="390"></a>
+      <!-- El logo regresa al principio de la página (header pegado arriba) -->
+      <a class="marca" href="#top"><img src="img/logo-a2.png?v=6" alt="A2 Innovación en Construcción y Diseño" width="1169" height="390"></a>
       <nav aria-label="Menú principal">
         <ul>
           <li><a href="#servicios">Servicios</a></li>
