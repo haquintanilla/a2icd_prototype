@@ -14,7 +14,11 @@
   <style>
     /* Tonos de naranja provisionales para ubicar cada parte de la página */
     :root {
-      --naranja-header: #bf360c;
+      /* Colores del header */
+      --header-fondo: #ffffff;
+      --header-texto: #000000;
+      --texto-menu: rgba(0, 0, 0, 0.8); /* menú del header: negro al 80 % */
+
       --naranja-hero: #e65100;
       --naranja-servicios: #f57c00;
       --naranja-proyectos: #ff9800;
@@ -22,7 +26,6 @@
       --naranja-contacto: #ffe0b2;
       --texto-claro: #ffffff;
       --texto-oscuro: #3e1500;
-      --texto-menu: rgba(255, 255, 255, 0.8); /* menú del header: blanco al 80 % */
 
       /* Colores del footer */
       --footer-fondo: #2f2e2e;
@@ -52,8 +55,8 @@
 
     /* 1. HEADER con NAV */
     header {
-      background: var(--naranja-header);
-      color: var(--texto-claro);
+      background: var(--header-fondo);
+      color: var(--header-texto);
       padding: 16px 0;
     }
     header .contenedor {
@@ -82,7 +85,7 @@
       text-decoration: none;
       transition: color 0.2s;
     }
-    nav a:hover, nav a:focus-visible { color: var(--texto-claro); text-decoration: underline; }
+    nav a:hover, nav a:focus-visible { color: var(--header-texto); text-decoration: underline; }
     /* En celular, menos espacio entre enlaces para que quepan en un renglón */
     @media (max-width: 720px) {
       nav ul { column-gap: 16px; }
