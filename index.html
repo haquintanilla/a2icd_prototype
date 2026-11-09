@@ -60,9 +60,12 @@
       padding: 16px 0;
     }
     header .contenedor {
+      /* El header usa todo el ancho de la pantalla, con poco margen a los lados */
+      max-width: none;
+      padding: 0 24px;
       display: flex;
       flex-wrap: wrap;
-      align-items: center;
+      align-items: flex-end; /* textos del menú abajo, a la altura de la base del logo */
       gap: 12px 32px;
     }
     /* Logo del header (PNG con fondo transparente): 100 px de alto (unos 298 px de ancho).
@@ -89,6 +92,7 @@
     nav a:hover, nav a:focus-visible { color: var(--header-texto); text-decoration: underline; }
     /* En celular, menos espacio entre enlaces para que quepan en un renglón */
     @media (max-width: 720px) {
+      header .contenedor { padding: 0 16px; }
       nav ul { column-gap: 16px; }
     }
 
