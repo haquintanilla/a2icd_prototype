@@ -9,32 +9,172 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
-    html, body { height: 100%; margin: 0; }
+    /* Tonos de naranja provisionales para ubicar cada parte de la página */
+    :root {
+      --naranja-header: #bf360c;
+      --naranja-hero: #e65100;
+      --naranja-servicios: #f57c00;
+      --naranja-proyectos: #ff9800;
+      --naranja-nosotros: #ffb74d;
+      --naranja-contacto: #ffe0b2;
+      --naranja-footer: #7f2704;
+      --texto-claro: #ffffff;
+      --texto-oscuro: #3e1500;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
     body {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 0 16px;
-      box-sizing: border-box;
+      margin: 0;
       font-family: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
       font-weight: 400;
-      background: #e65100;
-      color: #ffffff;
+      line-height: 1.5;
     }
-    h1 {
-      font-size: clamp(2rem, 8vw, 4.5rem);
+    h1, h2 { font-weight: 600; margin: 0; letter-spacing: -0.02em; }
+
+    /* Contenedor centrado para el contenido de cada parte */
+    .contenedor {
+      width: 100%;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 16px;
+    }
+
+    /* 1. HEADER con NAV */
+    header {
+      background: var(--naranja-header);
+      color: var(--texto-claro);
+      padding: 16px 0;
+    }
+    header .contenedor {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px 32px;
+    }
+    .marca {
       font-weight: 600;
+      font-size: 1.5rem;
+      color: inherit;
+      text-decoration: none;
+    }
+    nav ul {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 24px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    nav a {
+      font-weight: 500;
+      color: inherit;
+      text-decoration: none;
+    }
+    nav a:hover, nav a:focus-visible { text-decoration: underline; }
+
+    /* 2. MAIN con sus 5 secciones */
+    section {
+      min-height: 50vh;
+      display: flex;
+      align-items: center;
+      padding: 64px 0;
+    }
+    section h2 { font-size: clamp(1.75rem, 5vw, 3rem); }
+
+    #hero {
+      min-height: 80vh;
+      background: var(--naranja-hero);
+      color: var(--texto-claro);
+      text-align: center;
+    }
+    .etiqueta {
+      margin: 0 0 12px;
+      font-size: 1.25rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+    #hero h1 {
+      font-size: clamp(2rem, 8vw, 4.5rem);
       line-height: 1.1;
       max-width: 14em;
-      margin: 0;
-      letter-spacing: -0.02em;
-      text-align: center;
+      margin: 0 auto;
       text-wrap: balance;
-      color: #ffffff;
     }
+    #servicios { background: var(--naranja-servicios); color: var(--texto-oscuro); }
+    #proyectos { background: var(--naranja-proyectos); color: var(--texto-oscuro); }
+    #nosotros  { background: var(--naranja-nosotros);  color: var(--texto-oscuro); }
+    #contacto  { background: var(--naranja-contacto);  color: var(--texto-oscuro); }
+
+    /* 3. FOOTER */
+    footer {
+      background: var(--naranja-footer);
+      color: var(--texto-claro);
+      padding: 32px 0;
+      font-size: 0.875rem;
+    }
+    footer p { margin: 0; }
   </style>
 </head>
 <body>
-  <h1>A2 Innovación en Construcción y Diseño</h1>
+
+  <!-- 1. HEADER -->
+  <header>
+    <div class="contenedor">
+      <a class="marca" href="#hero">A2ICD</a>
+      <nav aria-label="Menú principal">
+        <ul>
+          <li><a href="#servicios">Servicios</a></li>
+          <li><a href="#proyectos">Proyectos</a></li>
+          <li><a href="#nosotros">Nosotros</a></li>
+          <li><a href="#contacto">Contacto</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- 2. MAIN -->
+  <main>
+    <section id="hero">
+      <div class="contenedor">
+        <p class="etiqueta">Hero</p>
+        <h1>A2 Innovación en Construcción y Diseño</h1>
+      </div>
+    </section>
+
+    <section id="servicios">
+      <div class="contenedor">
+        <h2>Servicios</h2>
+      </div>
+    </section>
+
+    <section id="proyectos">
+      <div class="contenedor">
+        <h2>Proyectos</h2>
+      </div>
+    </section>
+
+    <section id="nosotros">
+      <div class="contenedor">
+        <h2>Nosotros</h2>
+      </div>
+    </section>
+
+    <section id="contacto">
+      <div class="contenedor">
+        <h2>Contacto</h2>
+      </div>
+    </section>
+  </main>
+
+  <!-- 3. FOOTER -->
+  <footer>
+    <div class="contenedor">
+      <p>© 2026 A2 Innovación en Construcción y Diseño, S.A. de C.V.</p>
+    </div>
+  </footer>
+
 </body>
 </html>
