@@ -8,6 +8,7 @@
 
 ## Tipo de sitio
 - Sitio estático: solo HTML, CSS y JavaScript. Sin Node.js y sin paso de compilación.
+- **Única excepción (aprobada por el usuario):** el formulario de contacto usa PHP. No agregues PHP para nada más sin confirmación.
 - La página principal es `index.html`, en la raíz del repositorio.
 - Usa rutas relativas para enlaces, imágenes y estilos.
 - Diseño responsivo: debe verse bien en celular.
@@ -26,8 +27,17 @@
   ```
 - Fuentes de respaldo: `font-family: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;`
 
+## Formulario de contacto
+- La sección `#contacto` de `index.html` envía Nombre, Correo electrónico, Asunto y Mensaje a `contacto.php`.
+- `contacto.php` manda el correo con **PHPMailer** (copiado en `lib/PHPMailer/`, versión en `lib/PHPMailer/VERSION`) por el SMTP de Titan, el correo de a2icd.com: `smtp.titan.email`, puerto 465, SSL.
+- Protección contra spam: campo trampa `sitio_web`, tiempo mínimo para llenar, revisión de que el envío venga del mismo sitio y máximo 5 envíos por hora por visitante.
+- La carpeta `lib/` tiene un `.htaccess` que impide abrirla desde el navegador.
+- **La configuración privada no va en el repositorio.** Vive en el servidor, fuera de la carpeta pública, en `privado/contacto-config.php` (en la carpeta principal de la cuenta o en `domains/a2icd.com/`). Solo el usuario la crea o la edita. Devuelve un arreglo con `smtp_usuario`, `smtp_contrasena` y `destinatario` (opcionales: `smtp_servidor`, `smtp_puerto`, `smtp_seguridad` = `ssl`, `tls` o `ninguna`).
+- Los errores de envío se escriben en el registro de errores de PHP del servidor; al visitante solo se le muestra un mensaje general.
+
 ## Seguridad
 - Este repositorio es **público**: nunca guardes contraseñas, claves de API ni datos privados.
+- Nunca escribas ni pidas en el chat la contraseña del correo; el usuario la pone directamente en el archivo privado del servidor.
 
 ## Antes de cada cambio
 - Revisa que la página funcione y explica al usuario qué cambió antes de subirlo.

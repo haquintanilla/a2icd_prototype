@@ -1,0 +1,3 @@
+# Esta carpeta solo guarda código que usa contacto.php.
+# Nadie debe poder abrir estos archivos desde el navegador.
+Require all denied
