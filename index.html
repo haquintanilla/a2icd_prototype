@@ -109,66 +109,7 @@
       text-wrap: balance;
     }
     #servicios { background: var(--naranja-servicios); color: var(--texto-oscuro); }
-    #proyectos {
-      background: var(--naranja-proyectos);
-      color: var(--texto-oscuro);
-      flex-direction: column;
-      align-items: stretch;
-      gap: 40px;
-    }
-
-    /* Carrete de fotos de Proyectos: se mueve solo de derecha a izquierda */
-    .carrete {
-      --alto-foto: clamp(220px, 30vw, 360px);
-      --espacio: 0px;                /* fotos pegadas, sin espacio entre ellas */
-      overflow-x: auto;              /* sin animación, se puede deslizar con el dedo */
-      scroll-snap-type: x mandatory;
-    }
-    .carrete-pista {
-      display: flex;
-      gap: var(--espacio);
-      width: max-content;
-      margin: 0;
-      padding: 0 16px;
-      list-style: none;
-    }
-    .carrete-pista li { flex: none; scroll-snap-align: start; }
-    .carrete-pista img {
-      display: block;
-      height: var(--alto-foto);
-      width: auto;
-      aspect-ratio: 4 / 3;
-      object-fit: cover;
-      background: rgba(62, 21, 0, 0.12);
-    }
-    .carrete.animado {
-      overflow: hidden;
-      -webkit-mask-image: linear-gradient(to right, transparent, #000 5%, #000 95%, transparent);
-              mask-image: linear-gradient(to right, transparent, #000 5%, #000 95%, transparent);
-    }
-    .carrete.animado .carrete-pista {
-      padding: 0;
-      animation: carrete-avanza var(--duracion, 60s) linear infinite;
-    }
-    .carrete.animado:hover .carrete-pista,
-    .carrete.pausado .carrete-pista { animation-play-state: paused; }
-    @keyframes carrete-avanza {
-      from { transform: translateX(0); }
-      to   { transform: translateX(calc(-50% - var(--espacio) / 2)); }
-    }
-    .carrete-controles { display: flex; justify-content: flex-end; }
-    .carrete-boton {
-      padding: 6px 18px;
-      border: 2px solid currentColor;
-      border-radius: 999px;
-      background: transparent;
-      color: inherit;
-      font: inherit;
-      font-size: 0.95rem;
-      font-weight: 500;
-      cursor: pointer;
-    }
-    .carrete-boton:hover, .carrete-boton:focus-visible { background: rgba(62, 21, 0, 0.1); }
+    #proyectos { background: var(--naranja-proyectos); color: var(--texto-oscuro); }
     #nosotros  { background: var(--naranja-nosotros);  color: var(--texto-oscuro); }
     #contacto  { background: var(--naranja-contacto);  color: var(--texto-oscuro); }
 
@@ -327,26 +268,6 @@
       <div class="contenedor">
         <h2>Proyectos</h2>
       </div>
-
-      <!--
-        Carrete de fotos.
-        Fotos PROVISIONALES de Unsplash (licencia gratuita de Unsplash), enlazadas desde su sitio.
-        Se cambiarán por fotos de proyectos de A2ICD guardadas en el repositorio (carpeta img/).
-        Créditos: Joel Filipe, Howard Bouchevereau, Anders Jildén, Amir Hosseini y Sasha Yudaev.
-        Para agregar o quitar fotos basta con agregar o quitar un <li>; el movimiento se ajusta solo.
-      -->
-      <div class="carrete" role="region" aria-label="Fotos de proyectos">
-        <ul class="carrete-pista">
-          <li><img src="https://images.unsplash.com/photo-1479839672679-a46483c0e7c8?auto=format&amp;fit=crop&amp;w=1000&amp;h=750&amp;q=75" srcset="https://images.unsplash.com/photo-1479839672679-a46483c0e7c8?auto=format&amp;fit=crop&amp;w=600&amp;h=450&amp;q=75 600w, https://images.unsplash.com/photo-1479839672679-a46483c0e7c8?auto=format&amp;fit=crop&amp;w=1000&amp;h=750&amp;q=75 1000w" sizes="(max-width: 720px) 300px, 480px" width="1000" height="750" alt="Edificio moderno de concreto blanco bajo cielo azul" loading="lazy" decoding="async"></li>
-          <li><img src="https://images.unsplash.com/photo-1551038247-3d9af20df552?auto=format&amp;fit=crop&amp;w=1000&amp;h=750&amp;q=75" srcset="https://images.unsplash.com/photo-1551038247-3d9af20df552?auto=format&amp;fit=crop&amp;w=600&amp;h=450&amp;q=75 600w, https://images.unsplash.com/photo-1551038247-3d9af20df552?auto=format&amp;fit=crop&amp;w=1000&amp;h=750&amp;q=75 1000w" sizes="(max-width: 720px) 300px, 480px" width="1000" height="750" alt="Edificio moderno con fachada de azulejos blancos y grises y detalles naranjas en las ventanas" loading="lazy" decoding="async"></li>
-          <li><img src="https://images.unsplash.com/photo-1488972685288-c3fd157d7c7a?auto=format&amp;fit=crop&amp;w=1000&amp;h=750&amp;q=75" srcset="https://images.unsplash.com/photo-1488972685288-c3fd157d7c7a?auto=format&amp;fit=crop&amp;w=600&amp;h=450&amp;q=75 600w, https://images.unsplash.com/photo-1488972685288-c3fd157d7c7a?auto=format&amp;fit=crop&amp;w=1000&amp;h=750&amp;q=75 1000w" sizes="(max-width: 720px) 300px, 480px" width="1000" height="750" alt="Edificio gris visto desde abajo durante el día" loading="lazy" decoding="async"></li>
-          <li><img src="https://images.unsplash.com/photo-1615406020658-6c4b805f1f30?auto=format&amp;fit=crop&amp;w=1000&amp;h=750&amp;q=75" srcset="https://images.unsplash.com/photo-1615406020658-6c4b805f1f30?auto=format&amp;fit=crop&amp;w=600&amp;h=450&amp;q=75 600w, https://images.unsplash.com/photo-1615406020658-6c4b805f1f30?auto=format&amp;fit=crop&amp;w=1000&amp;h=750&amp;q=75 1000w" sizes="(max-width: 720px) 300px, 480px" width="1000" height="750" alt="Edificio de concreto café durante el día" loading="lazy" decoding="async"></li>
-          <li><img src="https://images.unsplash.com/photo-1598818384697-62330d600309?auto=format&amp;fit=crop&amp;w=1000&amp;h=750&amp;q=75" srcset="https://images.unsplash.com/photo-1598818384697-62330d600309?auto=format&amp;fit=crop&amp;w=600&amp;h=450&amp;q=75 600w, https://images.unsplash.com/photo-1598818384697-62330d600309?auto=format&amp;fit=crop&amp;w=1000&amp;h=750&amp;q=75 1000w" sizes="(max-width: 720px) 300px, 480px" width="1000" height="750" alt="Edificio de varios pisos visto desde abajo" loading="lazy" decoding="async"></li>
-        </ul>
-      </div>
-      <div class="contenedor carrete-controles">
-        <button type="button" class="carrete-boton" id="carrete-boton" aria-pressed="false" hidden>Pausar</button>
-      </div>
     </section>
 
     <section id="nosotros">
@@ -414,49 +335,6 @@
 
     </div>
   </footer>
-
-  <!-- Movimiento del carrete de fotos de Proyectos -->
-  <script>
-    (function () {
-      var carrete = document.querySelector('.carrete');
-      var boton = document.getElementById('carrete-boton');
-      if (!carrete) return;
-
-      // Si la persona pidió en su equipo "reducir el movimiento", el carrete no se mueve solo
-      // y se puede deslizar con el dedo o el mouse.
-      if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-
-      var VELOCIDAD = 45; // píxeles por segundo: lento para ver cada foto, sin que parezca detenido
-      var pista = carrete.querySelector('.carrete-pista');
-
-      // Se duplican las fotos para que el carrete no tenga fin
-      Array.prototype.slice.call(pista.children).forEach(function (li) {
-        var copia = li.cloneNode(true);
-        copia.setAttribute('aria-hidden', 'true');
-        Array.prototype.forEach.call(copia.querySelectorAll('img'), function (img) { img.alt = ''; });
-        pista.appendChild(copia);
-      });
-
-      // La duración se calcula según el ancho, para que la velocidad sea igual en celular y en computadora
-      function ajustar() {
-        var mitad = pista.scrollWidth / 2;
-        carrete.style.setProperty('--duracion', (mitad / VELOCIDAD).toFixed(1) + 's');
-      }
-      ajustar();
-      window.addEventListener('resize', ajustar);
-      carrete.classList.add('animado');
-
-      // Botón para pausar y reanudar
-      if (boton) {
-        boton.hidden = false;
-        boton.addEventListener('click', function () {
-          var pausado = carrete.classList.toggle('pausado');
-          boton.setAttribute('aria-pressed', String(pausado));
-          boton.textContent = pausado ? 'Reanudar' : 'Pausar';
-        });
-      }
-    })();
-  </script>
 
 </body>
 </html>

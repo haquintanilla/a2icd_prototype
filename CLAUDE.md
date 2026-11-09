@@ -10,7 +10,6 @@
 - Sitio estático: solo HTML, CSS y JavaScript. Sin Node.js y sin paso de compilación.
 - La página principal es `index.html`, en la raíz del repositorio.
 - Usa rutas relativas para enlaces, imágenes y estilos.
-  - **Excepción temporal:** las 5 fotos del carrete de Proyectos son fotos provisionales de Unsplash (licencia gratuita) enlazadas desde `images.unsplash.com`. Cuando el usuario mande fotos de proyectos de A2ICD, guárdalas en `img/proyectos/` y usa rutas relativas.
 - Diseño responsivo: debe verse bien en celular.
 - Contenido en español (México).
 
