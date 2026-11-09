@@ -16,7 +16,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..600&display=swap" rel="stylesheet">
   <style>
-    /* Tonos de naranja provisionales para ubicar cada parte de la página */
+    /* Colores de cada parte de la página (las secciones usan grises provisionales) */
     :root {
       /* ROJO OFICIAL DE A2ICD (el rojo del logo). Todo lo rojo del sitio usa esta variable. */
       --rojo-a2: #de0000;
@@ -29,13 +29,16 @@
       --menu-hover: var(--rojo-a2); /* texto del menú con el cursor encima */
       --menu-oprimido: #ffffff; /* texto del menú mientras se oprime */
 
-      --naranja-hero: #e65100;
-      --naranja-servicios: #f57c00;
-      --naranja-proyectos: #ff9800;
-      --naranja-nosotros: #ffb74d;
-      --naranja-contacto: #ffe0b2;
+      /* Grises provisionales de las secciones, de más oscuro a más claro. Todos son
+         lo bastante claros para texto negro (contraste de 11:1 o más; el mínimo
+         recomendado es 4.5:1 y el nivel más alto, 7:1). */
+      --gris-hero: #bdbdbd;
+      --gris-servicios: #cccccc;
+      --gris-proyectos: #d9d9d9;
+      --gris-nosotros: #e6e6e6;
+      --gris-contacto: #f2f2f2;
+      --texto-secciones: #000000;
       --texto-claro: #ffffff;
-      --texto-oscuro: #3e1500;
 
       /* Colores del footer */
       --footer-fondo: #2f2e2e;
@@ -142,8 +145,8 @@
 
     #hero {
       min-height: 80vh;
-      background: var(--naranja-hero);
-      color: var(--texto-claro);
+      background: var(--gris-hero);
+      color: var(--texto-secciones);
       text-align: center;
     }
     .etiqueta {
@@ -160,10 +163,10 @@
       margin: 0 auto;
       text-wrap: balance;
     }
-    #servicios { background: var(--naranja-servicios); color: var(--texto-oscuro); }
-    #proyectos { background: var(--naranja-proyectos); color: var(--texto-oscuro); }
-    #nosotros  { background: var(--naranja-nosotros);  color: var(--texto-oscuro); }
-    #contacto  { background: var(--naranja-contacto);  color: var(--texto-oscuro); }
+    #servicios { background: var(--gris-servicios); color: var(--texto-secciones); }
+    #proyectos { background: var(--gris-proyectos); color: var(--texto-secciones); }
+    #nosotros  { background: var(--gris-nosotros);  color: var(--texto-secciones); }
+    #contacto  { background: var(--gris-contacto);  color: var(--texto-secciones); }
 
     /* 3. FOOTER */
     footer {
