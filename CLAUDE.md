@@ -18,7 +18,7 @@
   - **Títulos** (h1 a h6): Semi Bold (**600**).
   - **Navegación** (menús y sus enlaces): Medium (**500**).
   - **Párrafos** y texto general: Regular (**400**).
-  - **Excepción pedida por el usuario:** la descripción de la empresa en el footer (`.pie-descripcion`) usa Light (**300**).
+  - **Footer (pedido del usuario):** los textos del footer usan las mismas características del texto del menú del header: mismo tamaño (`var(--menu-letra)`), Medium (**500**) y al 80 % (en blanco, `--footer-texto-menu`, porque el fondo es oscuro); sus enlaces se ponen rojos con el cursor encima y blancos al oprimir, como el menú. **Excepciones:** el nombre de la empresa en rojo y la frase debajo de los íconos de redes conservan su estilo. (Antes la descripción del footer era Light 300; ya no.)
 - **No subas los archivos de SF Pro** al repositorio ni al servidor: la licencia de Apple solo permite usarla para maquetas de apps de Apple, no como fuente de un sitio web.
 - SF Pro se muestra porque es la fuente del sistema en Mac, iPhone y iPad (`-apple-system`, `BlinkMacSystemFont`). En Windows y Android se usa **Inter** (licencia libre OFL, muy parecida), cargada desde Google Fonts con optical size y los pesos 300 a 600, dentro del `<head>`:
   ```html

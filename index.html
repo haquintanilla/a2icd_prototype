@@ -28,6 +28,7 @@
       --menu-linea: #808080;   /* líneas divisorias del menú (gris de la imagen de referencia) */
       --menu-hover: var(--rojo-a2); /* texto del menú con el cursor encima */
       --menu-oprimido: #ffffff; /* texto del menú mientras se oprime */
+      --menu-letra: 1rem;       /* tamaño del texto del menú (16 px; en celular, ver abajo) */
 
       /* Grises provisionales de las secciones, de más oscuro a más claro. Todos son
          lo bastante claros para texto negro (contraste de 11:1 o más; el mínimo
@@ -44,6 +45,9 @@
       --footer-fondo: #2f2e2e;
       --footer-dorado: #edc377;
       --footer-rojo: var(--rojo-a2); /* nombre de la empresa */
+      /* Textos del footer con el estilo del menú: al 80 %, como el menú, pero en blanco
+         porque el fondo es oscuro (el negro del menú no se leería) */
+      --footer-texto-menu: rgba(255, 255, 255, 0.8);
       --footer-icono: #949494;
       --footer-icono-hover: #b8b8b8;
     }
@@ -93,6 +97,7 @@
     nav {
       --menu-py: 12px;                       /* cuánto sobresalen las líneas arriba y abajo */
       --menu-px: clamp(16px, 2.5vw, 36px);   /* espacio entre el texto y la línea */
+      font-size: var(--menu-letra);
       margin-left: auto;
       margin-bottom: calc(-1 * var(--menu-py));
     }
@@ -125,12 +130,12 @@
     nav a:active { color: var(--menu-oprimido); transition: none; }
     /* En celular: letra y espacios un poco más chicos para que quepa en un renglón */
     @media (max-width: 720px) {
+      :root { --menu-letra: min(1rem, 4.2vw); }
       header .contenedor { padding: 0 16px 0 8px; } /* logo más a la izquierda: 8 px */
       nav {
         --menu-py: 8px;
         --menu-px: 2.6vw;
         margin-top: calc(-1 * var(--menu-py));
-        font-size: min(1rem, 4.2vw);
       }
     }
 
@@ -246,24 +251,38 @@
       grid-area: direccion;
       font-style: normal;
       text-align: right;
-      line-height: 1.65;
     }
     /* Teléfono y correo: se pueden tocar para llamar o escribir */
-    .pie-direccion a { text-decoration: none; white-space: nowrap; }
-    .pie-direccion a:hover, .pie-direccion a:focus-visible { text-decoration: underline; }
+    .pie-direccion a { white-space: nowrap; }
 
     .pie-legal { grid-area: legal; text-align: right; }
     .pie-legal .pie-descripcion {
-      max-width: 42em;
+      max-width: clamp(40rem, 68vw, 52rem); /* el mismo ancho que antes */
       margin-left: auto;
-      font-size: 0.9em;
-      font-weight: 300; /* Light, más delgada, a petición del usuario */
-      line-height: 1.6;
       text-wrap: pretty;
     }
-    .pie-legal .pie-copy { margin-top: 16px; font-size: 0.85em; }
-    .pie-legal a { text-decoration: none; }
-    .pie-legal a:hover, .pie-legal a:focus-visible { text-decoration: underline; }
+    .pie-legal .pie-copy { margin-top: 16px; }
+
+    /* Textos del footer con las mismas características del texto del menú del header:
+       mismo tamaño (--menu-letra), Medium (500) y al 80 % (en blanco por el fondo oscuro).
+       No aplica al nombre en rojo ni a la frase debajo de los íconos de redes. */
+    .pie-lema,
+    .pie-direccion,
+    .pie-legal .pie-descripcion,
+    .pie-legal .pie-copy {
+      font-size: var(--menu-letra);
+      font-weight: 500;
+      line-height: 1.5;
+      color: var(--footer-texto-menu);
+    }
+    /* Teléfono, correo y "Suscribir", como el menú: rojo con el cursor encima
+       (solo con mouse) y blanco mientras se oprime */
+    .pie-direccion a, .pie-legal a { text-decoration: none; transition: color 0.2s; }
+    @media (hover: hover) {
+      .pie-direccion a:hover, .pie-legal a:hover { color: var(--menu-hover); }
+    }
+    .pie-direccion a:focus-visible, .pie-legal a:focus-visible { color: var(--menu-hover); }
+    .pie-direccion a:active, .pie-legal a:active { color: var(--menu-oprimido); transition: none; }
 
     /* Acomodo en celular: una sola columna, centrada */
     @media (max-width: 720px) {
