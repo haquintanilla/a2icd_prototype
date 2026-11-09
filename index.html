@@ -41,6 +41,11 @@
       --texto-secciones: #000000;
       --texto-claro: #ffffff;
 
+      /* Formulario de contacto */
+      --campo-fondo: #ffffff;
+      --campo-borde: #8a8a8a;   /* gris con contraste suficiente sobre blanco y sobre la sección */
+      --texto-suave: rgba(0, 0, 0, 0.8);
+
       /* Colores del footer */
       --footer-fondo: #2f2e2e;
       --footer-dorado: #edc377;
@@ -172,6 +177,135 @@
     #proyectos { background: var(--gris-proyectos); color: var(--texto-secciones); }
     #nosotros  { background: var(--gris-nosotros);  color: var(--texto-secciones); }
     #contacto  { background: var(--gris-contacto);  color: var(--texto-secciones); }
+
+    /* FORMULARIO DE CONTACTO (sección Contacto) */
+    [hidden] { display: none !important; }
+    .contacto-intro {
+      margin: 16px 0 32px;
+      max-width: 40rem;
+      font-size: 1.125rem;
+    }
+    .formulario {
+      display: grid;
+      grid-template-columns: 1fr 1fr;   /* nombre y mensaje a lo ancho; correo y teléfono lado a lado */
+      gap: 20px 24px;
+      max-width: 46rem;
+    }
+    .campo-ancho { grid-column: 1 / -1; }
+    .campo label {
+      display: block;
+      margin-bottom: 6px;
+      font-weight: 500;
+    }
+    .campo input,
+    .campo textarea {
+      display: block;
+      width: 100%;
+      padding: 12px 14px;
+      font: inherit;
+      font-size: 1rem; /* 16 px: en iPhone evita que la página se acerque al escribir */
+      color: var(--texto-secciones);
+      background: var(--campo-fondo);
+      border: 1px solid var(--campo-borde);
+      border-radius: 2px;
+      transition: border-color 0.2s;
+    }
+    .campo textarea { min-height: 9rem; resize: vertical; }
+    /* Campo en el que se está escribiendo: línea roja */
+    .campo input:focus,
+    .campo textarea:focus {
+      border-color: var(--rojo-a2);
+      outline: 1px solid var(--rojo-a2);
+      outline-offset: 0;
+    }
+    /* Campo con un dato que falta o está mal: línea roja y aviso debajo */
+    .campo [aria-invalid="true"] { border-color: var(--rojo-a2); }
+    .campo-error {
+      margin: 6px 0 0;
+      color: var(--rojo-a2);
+      font-size: 0.9375rem;
+    }
+    .campo-error:empty { display: none; }
+    /* Campo trampa contra spam: fuera de la pantalla */
+    .campo-trampa {
+      position: absolute;
+      left: -10000px;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+    }
+    .formulario-pie {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px 32px;
+    }
+    .aviso-privacidad {
+      flex: 1 1 22rem;
+      margin: 0;
+      font-size: 0.9375rem;
+      color: var(--texto-suave);
+    }
+    .aviso-privacidad a { color: inherit; transition: color 0.2s; }
+    @media (hover: hover) {
+      .aviso-privacidad a:hover { color: var(--rojo-a2); }
+    }
+    /* Botón: rojo oficial con texto blanco (contraste 5.1:1); negro con el cursor encima */
+    .boton {
+      padding: 14px 32px;
+      font: inherit;
+      font-weight: 500;
+      color: #ffffff;
+      background: var(--rojo-a2);
+      border: 1px solid var(--rojo-a2);
+      border-radius: 2px;
+      cursor: pointer;
+      transition: background-color 0.2s, border-color 0.2s, color 0.2s;
+    }
+    @media (hover: hover) {
+      .boton:hover { background: #000000; border-color: #000000; }
+    }
+    .boton:focus-visible { outline: 2px solid #000000; outline-offset: 3px; }
+    .boton:active { background: var(--footer-fondo); border-color: var(--footer-fondo); transition: none; }
+    .boton[disabled] { opacity: 0.6; cursor: progress; }
+    .boton-secundario {
+      margin-top: 16px;
+      color: #000000;
+      background: transparent;
+      border-color: #000000;
+    }
+    @media (hover: hover) {
+      .boton-secundario:hover { color: #ffffff; }
+    }
+    .boton-secundario:active { color: #ffffff; }
+    /* Aviso general (por ejemplo, sin conexión): caja blanca con línea roja */
+    .formulario-estado {
+      margin: 0;
+      padding: 12px 16px;
+      background: var(--campo-fondo);
+      border-left: 4px solid var(--rojo-a2);
+    }
+    .formulario-estado:empty { padding: 0; border: 0; } /* vacío pero presente, para lectores de pantalla */
+    /* Mensaje de "Gracias" después de enviar */
+    .formulario-gracias {
+      max-width: 46rem;
+      padding: 24px;
+      background: var(--campo-fondo);
+      border-left: 4px solid var(--footer-fondo);
+    }
+    .formulario-gracias:focus { outline: none; }
+    .formulario-gracias p { margin: 0; }
+    .formulario-gracias .gracias-titulo {
+      margin-bottom: 4px;
+      font-size: 1.5rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+    }
+    @media (max-width: 720px) {
+      .formulario { grid-template-columns: 1fr; }
+      .formulario-pie .boton { width: 100%; }
+    }
 
     /* 3. FOOTER */
     footer {
@@ -376,6 +510,53 @@
     <section id="contacto">
       <div class="contenedor">
         <h2>Cómo contratarnos - Contacto</h2>
+        <p class="contacto-intro">Cuéntanos de tu proyecto y te responderemos pronto. Todos los campos son obligatorios.</p>
+
+        <!-- Formulario de contacto: lo recibe enviar.php y lo manda por correo desde info@a2icd.com -->
+        <form class="formulario" id="formulario-contacto" action="enviar.php" method="post" accept-charset="UTF-8">
+          <div class="campo campo-ancho">
+            <label for="f-nombre">Nombre</label>
+            <input id="f-nombre" name="nombre" type="text" autocomplete="name" maxlength="100" required aria-describedby="e-nombre">
+            <p class="campo-error" id="e-nombre"></p>
+          </div>
+          <div class="campo">
+            <label for="f-correo">Correo</label>
+            <input id="f-correo" name="correo" type="email" autocomplete="email" maxlength="254" required aria-describedby="e-correo">
+            <p class="campo-error" id="e-correo"></p>
+          </div>
+          <div class="campo">
+            <label for="f-telefono">Teléfono</label>
+            <input id="f-telefono" name="telefono" type="tel" autocomplete="tel" inputmode="tel" maxlength="30" required aria-describedby="e-telefono">
+            <p class="campo-error" id="e-telefono"></p>
+          </div>
+          <div class="campo campo-ancho">
+            <label for="f-mensaje">Mensaje</label>
+            <textarea id="f-mensaje" name="mensaje" rows="6" maxlength="5000" required aria-describedby="e-mensaje"></textarea>
+            <p class="campo-error" id="e-mensaje"></p>
+          </div>
+
+          <!-- Contra el spam: campo oculto para las personas (los programas automáticos lo llenan)
+               y el tiempo que tardó la persona en llenar el formulario -->
+          <div class="campo-trampa" aria-hidden="true">
+            <label for="f-sitio-web">Deja este campo vacío</label>
+            <input id="f-sitio-web" name="sitio_web" type="text" tabindex="-1" autocomplete="off">
+          </div>
+          <input type="hidden" name="tiempo" value="">
+
+          <div class="formulario-pie campo-ancho">
+            <!-- Aviso de privacidad simplificado (LFPDPPP). El enlace al aviso integral es provisional. -->
+            <p class="aviso-privacidad">A2 Innovación en Construcción y Diseño, S.A.&nbsp;de&nbsp;C.V. usará tus datos solo para responder a tu mensaje. Consulta el <a href="#">aviso de privacidad</a>.</p>
+            <button type="submit" class="boton">Enviar mensaje</button>
+          </div>
+          <p class="formulario-estado campo-ancho" role="status" aria-live="polite"></p>
+        </form>
+
+        <!-- Se muestra cuando el mensaje se envió -->
+        <div class="formulario-gracias" id="contacto-gracias" tabindex="-1" hidden>
+          <p class="gracias-titulo">¡Gracias!</p>
+          <p>Recibimos tu mensaje y te responderemos pronto.</p>
+          <button type="button" class="boton boton-secundario" id="otro-mensaje">Enviar otro mensaje</button>
+        </div>
       </div>
     </section>
   </main>
@@ -433,6 +614,120 @@
 
     </div>
   </footer>
+
+  <script>
+    /* FORMULARIO DE CONTACTO: revisa los datos, los envía sin recargar la página
+       y muestra el resultado. Sin JavaScript el formulario se envía igual
+       y enviar.php muestra una página con el resultado. */
+    (function () {
+      var form = document.getElementById('formulario-contacto');
+      if (!form || !window.fetch || !window.FormData) return;
+      var gracias = document.getElementById('contacto-gracias');
+      var estado = form.querySelector('.formulario-estado');
+      var boton = form.querySelector('button[type="submit"]');
+      var textoBoton = boton.textContent;
+      var respaldo = 'escríbenos a info@a2icd.com o llámanos al +52 81 8348 7625';
+      var inicio = Date.now();
+      form.noValidate = true; /* los avisos los muestra la página, en español */
+
+      /* Las mismas reglas que revisa enviar.php en el servidor */
+      var reglas = {
+        nombre: function (v) { return v ? '' : 'Escribe tu nombre.'; },
+        correo: function (v) {
+          if (!v) return 'Escribe tu correo.';
+          return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v) ? ''
+            : 'Revisa tu correo; parece incompleto (ejemplo: nombre@empresa.com).';
+        },
+        telefono: function (v) {
+          if (!v) return 'Escribe tu teléfono.';
+          var digitos = v.replace(/\D/g, '').length;
+          return /^\+?[0-9 ()\-.]+$/.test(v) && digitos >= 10 && digitos <= 15 ? ''
+            : 'Revisa tu teléfono: debe tener 10 dígitos (o la lada del país y el número).';
+        },
+        mensaje: function (v) { return v ? '' : 'Escribe tu mensaje.'; }
+      };
+
+      function marcar(nombre, texto) {
+        var campo = form.elements[nombre];
+        var aviso = document.getElementById('e-' + nombre);
+        if (!campo || !aviso) return false;
+        aviso.textContent = texto || '';
+        if (texto) campo.setAttribute('aria-invalid', 'true');
+        else campo.removeAttribute('aria-invalid');
+        return true;
+      }
+
+      /* Revisa todo; regresa el primer campo con problema (o null) */
+      function revisar() {
+        var primero = null;
+        Object.keys(reglas).forEach(function (n) {
+          var texto = reglas[n](form.elements[n].value.trim());
+          marcar(n, texto);
+          if (texto && !primero) primero = form.elements[n];
+        });
+        return primero;
+      }
+
+      /* Un campo marcado se vuelve a revisar mientras se corrige (no al salir de él:
+         el aviso desaparecería al oprimir Enviar, el botón se movería y el clic se perdería) */
+      Object.keys(reglas).forEach(function (n) {
+        form.elements[n].addEventListener('input', function () {
+          if (this.getAttribute('aria-invalid') === 'true') marcar(n, reglas[n](this.value.trim()));
+        });
+      });
+
+      form.addEventListener('submit', function (evento) {
+        evento.preventDefault();
+        estado.textContent = '';
+        var primero = revisar();
+        if (primero) { primero.focus(); return; }
+
+        form.elements.tiempo.value = ((Date.now() - inicio) / 1000).toFixed(1);
+        var nombre = form.elements.nombre.value.trim().split(/\s+/)[0];
+        boton.disabled = true;
+        boton.textContent = 'Enviando…';
+
+        fetch(form.action, {
+          method: 'POST',
+          body: new FormData(form),
+          headers: { 'Accept': 'application/json' }
+        })
+          .then(function (r) { return r.json().catch(function () { return { ok: false }; }); })
+          .then(function (res) {
+            if (res.ok) {
+              gracias.querySelector('.gracias-titulo').textContent = '¡Gracias, ' + nombre + '!';
+              form.reset();
+              form.hidden = true;
+              gracias.hidden = false;
+              gracias.focus();
+              return;
+            }
+            var errores = res.errores || {};
+            var hayCampo = false;
+            Object.keys(errores).forEach(function (n) {
+              if (marcar(n, errores[n]) && !hayCampo) { form.elements[n].focus(); hayCampo = true; }
+            });
+            if (!hayCampo) {
+              estado.textContent = res.mensaje || ('No pudimos enviar tu mensaje. Intenta de nuevo o ' + respaldo + '.');
+            }
+          })
+          .catch(function () {
+            estado.textContent = 'No hubo conexión con el servidor. Intenta de nuevo o ' + respaldo + '.';
+          })
+          .then(function () {
+            boton.disabled = false;
+            boton.textContent = textoBoton;
+          });
+      });
+
+      document.getElementById('otro-mensaje').addEventListener('click', function () {
+        gracias.hidden = true;
+        form.hidden = false;
+        inicio = Date.now();
+        form.elements.nombre.focus();
+      });
+    })();
+  </script>
 
 </body>
 </html>

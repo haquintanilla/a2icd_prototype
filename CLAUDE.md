@@ -7,7 +7,8 @@
 - No cambies la configuración de publicación automática (dominio, carpeta o rama) sin confirmación explícita del usuario.
 
 ## Tipo de sitio
-- Sitio estático: solo HTML, CSS y JavaScript. Sin Node.js y sin paso de compilación.
+- Sitio estático: HTML, CSS y JavaScript. Sin Node.js y sin paso de compilación.
+- **Única excepción (aprobada por el usuario el 9 nov 2026): el formulario de contacto usa PHP.** Son `enviar.php` (en la raíz) y PHPMailer copiado en `lib/PHPMailer/` (sin Composer; `lib/.htaccess` impide abrir esa carpeta desde el navegador). No agregues más PHP sin confirmación del usuario.
 - La página principal es `index.html`, en la raíz del repositorio.
 - Usa rutas relativas para enlaces, imágenes y estilos.
 - Diseño responsivo: debe verse bien en celular.
@@ -18,6 +19,7 @@
   - **Títulos** (h1 a h6): Semi Bold (**600**).
   - **Navegación** (menús y sus enlaces): Medium (**500**).
   - **Párrafos** y texto general: Regular (**400**).
+  - **Formulario:** etiquetas de los campos y botones en Medium (**500**); lo que escribe el visitante, Regular (**400**).
   - **Footer (pedido del usuario):** los textos del footer usan las mismas características del texto del menú del header: mismo tamaño (`var(--menu-letra)`), Medium (**500**) y al 80 % (en blanco, `--footer-texto-menu`, porque el fondo es oscuro); sus enlaces se ponen rojos con el cursor encima y blancos al oprimir, como el menú. **Excepciones:** el nombre de la empresa en rojo y la frase debajo de los íconos de redes conservan su estilo. (Antes la descripción del footer era Light 300; ya no.)
 - **No subas los archivos de SF Pro** al repositorio ni al servidor: la licencia de Apple solo permite usarla para maquetas de apps de Apple, no como fuente de un sitio web.
 - SF Pro se muestra porque es la fuente del sistema en Mac, iPhone y iPad (`-apple-system`, `BlinkMacSystemFont`). En Windows y Android se usa **Inter** (licencia libre OFL, muy parecida), cargada desde Google Fonts con optical size y los pesos 300 a 600, dentro del `<head>`:
@@ -34,6 +36,13 @@
 
 ## Seguridad
 - Este repositorio es **público**: nunca guardes contraseñas, claves de API ni datos privados.
+
+## Formulario de contacto
+- Está en la sección Contacto de `index.html` (nombre, correo, teléfono y mensaje). Se envía sin recargar la página; sin JavaScript también funciona.
+- `enviar.php` revisa los datos y los manda por el SMTP de Titan (`smtp.titan.email`, puerto 465, SSL) **desde info@a2icd.com**, con el correo del visitante en "Responder a".
+- La **contraseña de info@a2icd.com** y el **correo que recibe los mensajes** están en un archivo privado, fuera de `public_html`: `/home/u807517947/domains/a2icd.com/privado/formulario.php`. Nunca los pongas en el repositorio. En esa carpeta también quedan el conteo de envíos y `formulario-errores.log`.
+- Contra el spam: campo trampa oculto, tiempo mínimo de 3 s, y límites (5 mensajes por persona por hora; 20 por hora y 60 al día en total, para no gastar los envíos de info@a2icd.com: Titan permite 50 por hora y 300 al día).
+- Si cambias una regla de los campos, cámbiala en los dos lados: el JavaScript de `index.html` y `enviar.php`.
 
 ## Antes de cada cambio
 - Revisa que la página funcione y explica al usuario qué cambió antes de subirlo.
