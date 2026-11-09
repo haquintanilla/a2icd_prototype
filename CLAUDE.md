@@ -18,11 +18,12 @@
   - **Títulos** (h1 a h6): Semi Bold (**600**).
   - **Navegación** (menús y sus enlaces): Medium (**500**).
   - **Párrafos** y texto general: Regular (**400**).
-- Cárgala desde Google Fonts, solo con esos tres pesos, dentro del `<head>`:
+  - **Excepción pedida por el usuario:** la descripción de la empresa en el footer (`.pie-descripcion`) usa Light (**300**).
+- Cárgala desde Google Fonts, solo con esos cuatro pesos (300, 400, 500 y 600), dentro del `<head>`:
   ```html
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
   ```
 - Fuentes de respaldo: `font-family: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;`
 
