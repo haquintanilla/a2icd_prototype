@@ -22,6 +22,7 @@
       --naranja-contacto: #ffe0b2;
       --texto-claro: #ffffff;
       --texto-oscuro: #3e1500;
+      --texto-menu: rgba(255, 255, 255, 0.8); /* menú del header: blanco al 80 % */
 
       /* Colores del footer */
       --footer-fondo: #2f2e2e;
@@ -59,7 +60,7 @@
       display: flex;
       flex-wrap: wrap;
       align-items: center;
-      justify-content: space-between;
+      justify-content: flex-start; /* menú a la izquierda, junto a la marca */
       gap: 12px 32px;
     }
     .marca {
@@ -78,10 +79,11 @@
     }
     nav a {
       font-weight: 500;
-      color: inherit;
+      color: var(--texto-menu);
       text-decoration: none;
+      transition: color 0.2s;
     }
-    nav a:hover, nav a:focus-visible { text-decoration: underline; }
+    nav a:hover, nav a:focus-visible { color: var(--texto-claro); text-decoration: underline; }
 
     /* 2. MAIN con sus 5 secciones */
     section {
