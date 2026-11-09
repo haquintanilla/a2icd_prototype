@@ -120,7 +120,7 @@
     /* Carrete de fotos de Proyectos: se mueve solo de derecha a izquierda */
     .carrete {
       --alto-foto: clamp(220px, 30vw, 360px);
-      --espacio: 16px;
+      --espacio: 0px;                /* fotos pegadas, sin espacio entre ellas */
       overflow-x: auto;              /* sin animación, se puede deslizar con el dedo */
       scroll-snap-type: x mandatory;
     }
@@ -139,7 +139,6 @@
       width: auto;
       aspect-ratio: 4 / 3;
       object-fit: cover;
-      border-radius: 4px;
       background: rgba(62, 21, 0, 0.12);
     }
     .carrete.animado {
