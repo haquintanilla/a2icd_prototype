@@ -18,12 +18,15 @@
   <style>
     /* Tonos de naranja provisionales para ubicar cada parte de la página */
     :root {
+      /* ROJO OFICIAL DE A2ICD (el rojo del logo). Todo lo rojo del sitio usa esta variable. */
+      --rojo-a2: #de0000;
+
       /* Colores del header */
       --header-fondo: #ffffff;
       --header-texto: #000000;
       --texto-menu: rgba(0, 0, 0, 0.8); /* menú del header: negro al 80 % */
       --menu-linea: #808080;   /* líneas divisorias del menú (gris de la imagen de referencia) */
-      --menu-hover: #e40000;   /* texto del menú con el cursor encima (rojo del logo) */
+      --menu-hover: var(--rojo-a2); /* texto del menú con el cursor encima */
       --menu-oprimido: #ffffff; /* texto del menú mientras se oprime */
 
       --naranja-hero: #e65100;
@@ -37,7 +40,7 @@
       /* Colores del footer */
       --footer-fondo: #2f2e2e;
       --footer-dorado: #edc377;
-      --footer-rojo: #de0101; /* nombre de la empresa: mismo rojo del logo del footer */
+      --footer-rojo: var(--rojo-a2); /* nombre de la empresa */
       --footer-icono: #949494;
       --footer-icono-hover: #b8b8b8;
     }

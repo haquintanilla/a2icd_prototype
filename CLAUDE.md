@@ -28,6 +28,10 @@
   ```
 - Fuentes en este orden: `font-family: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", Roboto, sans-serif;` (no pongas `system-ui` antes de Inter: en Windows mostraría Segoe UI).
 
+## Colores
+- **Rojo oficial de A2ICD: `#DE0000`** (el rojo del logo). Es el rojo que se debe usar en **todo** el sitio: textos, enlaces, botones, líneas, fondos y efectos al pasar el cursor.
+- En el CSS está como la variable `--rojo-a2`. Usa siempre `var(--rojo-a2)`; no escribas otros rojos (`#e40000`, `#e50100`, etc.).
+
 ## Seguridad
 - Este repositorio es **público**: nunca guardes contraseñas, claves de API ni datos privados.
 
