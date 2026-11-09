@@ -2,7 +2,8 @@
 /*
  * FORMULARIO DE CONTACTO DE A2ICD
  * Recibe los datos de la sección Contacto (nombre, correo, teléfono y mensaje)
- * y los envía por correo con PHPMailer, por el SMTP de Titan, desde info@a2icd.com.
+ * y los envía por correo con PHPMailer, por el SMTP de Titan:
+ * se envían DESDE sender@a2icd.com y llegan A info@a2icd.com.
  *
  * LA CONTRASEÑA NO ESTÁ AQUÍ: el repositorio es público. Está en un archivo
  * privado, fuera de public_html (no se puede abrir desde el navegador):
@@ -13,9 +14,11 @@
  *
  *   <?php
  *   return [
- *       'smtp_contrasena' => 'LA-CONTRASEÑA-DE-info@a2icd.com',
- *       'destinatario'    => 'correo-que-recibe-los-mensajes@a2icd.com',
+ *       'smtp_contrasena' => 'LA-CONTRASEÑA-DE-sender@a2icd.com',
  *   ];
+ *
+ * Ese archivo también puede cambiar cualquier otro ajuste de $AJUSTES
+ * (por ejemplo 'destinatario') sin tocar este archivo.
  *
  * En esa misma carpeta se guardan el conteo de envíos (para los límites) y el
  * registro de errores (formulario-errores.log), sin datos de los visitantes.
@@ -38,8 +41,8 @@ const LIMITES = [
     'por_persona_hora' => 5,   // mensajes por persona en una hora
     'total_hora'       => 20,  // mensajes de todo el sitio en una hora
     'total_dia'        => 60,  // mensajes de todo el sitio en 24 horas
-    // Titan permite 50 por hora y 300 al día desde info@a2icd.com; con estos topes
-    // el formulario nunca deja sin envíos al buzón aunque lo ataquen con spam.
+    // Titan permite 50 por hora y 300 al día desde sender@a2icd.com; con estos topes
+    // un ataque de spam no llena info@a2icd.com ni agota los envíos del buzón.
 ];
 
 const LARGO_MAXIMO = [
@@ -56,11 +59,11 @@ $AJUSTES = [
     'smtp_puerto'      => 465,
     'smtp_seguridad'   => 'ssl',   // 'ssl' (puerto 465), 'tls' (587) o '' (solo pruebas)
     'smtp_autenticar'  => true,
-    'smtp_usuario'     => 'info@a2icd.com',
-    'smtp_contrasena'  => '',      // va en el archivo privado
-    'remitente'        => 'info@a2icd.com',
+    'smtp_usuario'     => 'sender@a2icd.com',  // buzón que envía
+    'smtp_contrasena'  => '',                  // va en el archivo privado
+    'remitente'        => 'sender@a2icd.com',
     'remitente_nombre' => 'Sitio web A2ICD',
-    'destinatario'     => '',      // va en el archivo privado
+    'destinatario'     => 'info@a2icd.com',    // buzón que recibe los mensajes
 ];
 
 /* ---------- Carpeta privada ---------- */
@@ -224,7 +227,7 @@ if ($errores) {
     responder(422, false, 'Revisa los datos marcados.', $errores);
 }
 
-/* ---------- Ajustes privados (contraseña y destinatario) ---------- */
+/* ---------- Ajustes privados (contraseña de sender@a2icd.com) ---------- */
 
 $archivo_privado = $PRIVADO !== null ? $PRIVADO . '/formulario.php' : null;
 if ($archivo_privado === null || !is_file($archivo_privado)) {
@@ -240,7 +243,7 @@ $AJUSTES = array_merge($AJUSTES, array_intersect_key($privados, $AJUSTES));
 
 if (($AJUSTES['smtp_autenticar'] && $AJUSTES['smtp_contrasena'] === '')
     || !PHPMailer::validateAddress((string) $AJUSTES['destinatario'])) {
-    error_log('Formulario A2ICD: faltan la contraseña o el destinatario en el archivo privado');
+    error_log('Formulario A2ICD: falta la contraseña en el archivo privado o el destinatario no es válido');
     responder(500, false, 'Por ahora no pudimos enviar tu mensaje. Por favor, ' . CONTACTO_RESPALDO . '.');
 }
 

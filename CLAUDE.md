@@ -39,9 +39,9 @@
 
 ## Formulario de contacto
 - Está en la sección Contacto de `index.html` (nombre, correo, teléfono y mensaje). Se envía sin recargar la página; sin JavaScript también funciona.
-- `enviar.php` revisa los datos y los manda por el SMTP de Titan (`smtp.titan.email`, puerto 465, SSL) **desde info@a2icd.com**, con el correo del visitante en "Responder a".
-- La **contraseña de info@a2icd.com** y el **correo que recibe los mensajes** están en un archivo privado, fuera de `public_html`: `/home/u807517947/domains/a2icd.com/privado/formulario.php`. Nunca los pongas en el repositorio. En esa carpeta también quedan el conteo de envíos y `formulario-errores.log`.
-- Contra el spam: campo trampa oculto, tiempo mínimo de 3 s, y límites (5 mensajes por persona por hora; 20 por hora y 60 al día en total, para no gastar los envíos de info@a2icd.com: Titan permite 50 por hora y 300 al día).
+- `enviar.php` revisa los datos y los manda por el SMTP de Titan (`smtp.titan.email`, puerto 465, SSL) **desde sender@a2icd.com** (buzón que envía) **a info@a2icd.com** (buzón que recibe), con el correo del visitante en "Responder a".
+- La **contraseña de sender@a2icd.com** está en un archivo privado, fuera de `public_html`: `/home/u807517947/domains/a2icd.com/privado/formulario.php`. Nunca la pongas en el repositorio. Ese archivo puede cambiar otros ajustes (por ejemplo `destinatario`) sin tocar `enviar.php`. En esa carpeta también quedan el conteo de envíos y `formulario-errores.log`.
+- Contra el spam: campo trampa oculto, tiempo mínimo de 3 s, y límites (5 mensajes por persona por hora; 20 por hora y 60 al día en total, para que un ataque no llene info@a2icd.com ni agote los envíos de sender@a2icd.com: Titan permite 50 por hora y 300 al día).
 - Si cambias una regla de los campos, cámbiala en los dos lados: el JavaScript de `index.html` y `enviar.php`.
 
 ## Antes de cada cambio
