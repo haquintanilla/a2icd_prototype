@@ -65,9 +65,9 @@
       align-items: center;
       gap: 12px 32px;
     }
-    /* Logo del header (PNG con fondo transparente) */
-    .marca { display: block; line-height: 0; }
-    .marca img { display: block; height: 64px; width: auto; }
+    /* Logo del header (PNG con fondo transparente), a su tamaño original: 319 × 110 px */
+    .marca { display: block; line-height: 0; min-width: 0; }
+    .marca img { display: block; width: 319px; max-width: 100%; height: auto; }
     /* Menú alineado a la derecha (también en celular) */
     nav { margin-left: auto; }
     nav ul {
@@ -249,7 +249,7 @@
   <!-- 1. HEADER -->
   <header>
     <div class="contenedor">
-      <a class="marca" href="#hero"><img src="img/logo-a2.png?v=3" alt="A2 Innovación en Construcción y Diseño" width="761" height="256"></a>
+      <a class="marca" href="#hero"><img src="img/logo-a2.png?v=4" alt="A2 Innovación en Construcción y Diseño" width="319" height="110"></a>
       <nav aria-label="Menú principal">
         <ul>
           <li><a href="#servicios">Servicios</a></li>
