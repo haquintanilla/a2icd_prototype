@@ -16,18 +16,9 @@
       --naranja-servicios: #f57c00;
       --naranja-proyectos: #ff9800;
       --naranja-nosotros: #ffb74d;
+      --naranja-contacto: #ffe0b2;
       --texto-claro: #ffffff;
       --texto-oscuro: #3e1500;
-
-      /* Colores de la sección Contacto */
-      --contacto-fondo: #b8b5a8;
-      --contacto-texto: #000000;
-      --contacto-escrito: #1f1f1f;
-      --contacto-placeholder: #5f5e5e;
-      --contacto-linea: #e0514a;
-      --contacto-linea-mensaje: #a0a09f;
-      --contacto-boton: #2a2a2a;
-      --contacto-boton-hover: #000000;
 
       /* Colores del footer */
       --footer-fondo: #2f2e2e;
@@ -120,107 +111,7 @@
     #servicios { background: var(--naranja-servicios); color: var(--texto-oscuro); }
     #proyectos { background: var(--naranja-proyectos); color: var(--texto-oscuro); }
     #nosotros  { background: var(--naranja-nosotros);  color: var(--texto-oscuro); }
-
-    /* Sección Contacto con formulario */
-    #contacto {
-      background: var(--contacto-fondo);
-      color: var(--contacto-texto);
-      padding: 72px 0 80px;
-    }
-    .contacto { max-width: 800px; text-align: center; }
-    #contacto h2 {
-      color: var(--texto-claro);
-      font-size: clamp(3rem, 9vw, 5.5rem);
-      line-height: 1.1;
-    }
-    .contacto-direccion {
-      margin: 40px 0 56px;
-      font-style: normal;
-      font-size: clamp(1.0625rem, 1.8vw, 1.25rem);
-      line-height: 1.7;
-    }
-    .contacto-form {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      column-gap: 56px;
-      row-gap: 8px;
-      text-align: left;
-    }
-    .campo-ancho { grid-column: 1 / -1; }
-    .contacto-form input,
-    .contacto-form textarea {
-      display: block;
-      width: 100%;
-      margin: 0;
-      padding: 12px 8px;
-      border: 0;
-      border-bottom: 2px solid var(--contacto-linea);
-      border-radius: 0;
-      background: transparent;
-      color: var(--contacto-escrito);
-      font: inherit;
-      font-size: clamp(1.25rem, 2.4vw, 1.75rem);
-    }
-    .contacto-form textarea {
-      min-height: 280px;
-      margin-top: 16px;
-      border-bottom-color: var(--contacto-linea-mensaje);
-      resize: vertical;
-    }
-    .contacto-form ::placeholder { color: var(--contacto-placeholder); opacity: 1; }
-    .contacto-form input:focus-visible,
-    .contacto-form textarea:focus-visible {
-      outline: 2px solid var(--contacto-boton);
-      outline-offset: 2px;
-    }
-    .contacto-form button {
-      grid-column: 1 / -1;
-      margin-top: 32px;
-      padding: 18px 24px;
-      border: 0;
-      border-radius: 999px;
-      background: var(--contacto-boton);
-      color: var(--texto-claro);
-      font: inherit;
-      font-size: 1.25rem;
-      font-weight: 600;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      cursor: pointer;
-      transition: background-color 0.2s;
-    }
-    .contacto-form button:hover,
-    .contacto-form button:focus-visible { background: var(--contacto-boton-hover); }
-    .contacto-form button:focus-visible { outline: 2px solid var(--contacto-boton); outline-offset: 3px; }
-    .contacto-form button:disabled { opacity: 0.6; cursor: wait; }
-    .contacto-estado {
-      grid-column: 1 / -1;
-      min-height: 1.5em;
-      margin: 16px 0 0;
-      text-align: center;
-      font-size: 1.125rem;
-    }
-    .contacto-estado.ok { color: #1b4d2a; font-weight: 600; }
-    .contacto-estado.error { color: #7a1410; font-weight: 600; }
-
-    /* Etiquetas solo para lectores de pantalla y campo trampa contra spam */
-    .solo-lectores, .trampa {
-      position: absolute;
-      width: 1px;
-      height: 1px;
-      margin: -1px;
-      padding: 0;
-      overflow: hidden;
-      clip: rect(0 0 0 0);
-      white-space: nowrap;
-      border: 0;
-    }
-
-    @media (max-width: 720px) {
-      .contacto-form { grid-template-columns: 1fr; }
-      .contacto-direccion { margin: 24px 0 32px; }
-      .contacto-form textarea { min-height: 200px; }
-    }
+    #contacto  { background: var(--naranja-contacto);  color: var(--texto-oscuro); }
 
     /* 3. FOOTER */
     footer {
@@ -377,43 +268,8 @@
     </section>
 
     <section id="contacto">
-      <div class="contenedor contacto">
+      <div class="contenedor">
         <h2>Contacto</h2>
-
-        <address class="contacto-direccion">
-          Simón Bolívar 2090-D, Mitras Centro<br>
-          Monterrey, Nuevo León | México 64460
-        </address>
-
-        <!-- El formulario lo procesa contacto.php, que envía el correo -->
-        <form class="contacto-form" id="contacto-form" action="contacto.php" method="post">
-          <div class="campo">
-            <label class="solo-lectores" for="c-nombre">Nombre</label>
-            <input id="c-nombre" name="nombre" type="text" placeholder="Nombre" required maxlength="100" autocomplete="name">
-          </div>
-          <div class="campo">
-            <label class="solo-lectores" for="c-correo">Correo electrónico</label>
-            <input id="c-correo" name="correo" type="email" placeholder="Correo electrónico" required maxlength="150" autocomplete="email">
-          </div>
-          <div class="campo campo-ancho">
-            <label class="solo-lectores" for="c-asunto">Asunto</label>
-            <input id="c-asunto" name="asunto" type="text" placeholder="Asunto" required maxlength="150">
-          </div>
-          <div class="campo campo-ancho">
-            <label class="solo-lectores" for="c-mensaje">Mensaje</label>
-            <textarea id="c-mensaje" name="mensaje" placeholder="Escribe tu mensaje aquí" required maxlength="5000"></textarea>
-          </div>
-
-          <!-- Campo trampa: las personas no lo ven; si un robot lo llena, el mensaje se descarta -->
-          <div class="trampa" aria-hidden="true">
-            <label for="c-sitio">No llenar este campo</label>
-            <input id="c-sitio" name="sitio_web" type="text" tabindex="-1" autocomplete="off">
-          </div>
-          <input type="hidden" name="t" id="c-tiempo" value="">
-
-          <button type="submit">Enviar</button>
-          <p class="contacto-estado" id="contacto-estado" role="status" aria-live="polite"></p>
-        </form>
       </div>
     </section>
   </main>
@@ -470,55 +326,6 @@
 
     </div>
   </footer>
-
-  <!-- Envío del formulario de contacto sin salir de la página -->
-  <script>
-    (function () {
-      var form = document.getElementById('contacto-form');
-      var estado = document.getElementById('contacto-estado');
-      var tiempo = document.getElementById('c-tiempo');
-      if (!form || !window.fetch) return;
-
-      // Momento en que se abrió la página (ayuda a detectar robots que llenan todo de golpe)
-      tiempo.value = String(Math.floor(Date.now() / 1000));
-
-      function mostrar(texto, tipo) {
-        estado.textContent = texto;
-        estado.className = 'contacto-estado' + (tipo ? ' ' + tipo : '');
-      }
-
-      form.addEventListener('submit', function (e) {
-        e.preventDefault();
-        if (!form.checkValidity()) { form.reportValidity(); return; }
-
-        var boton = form.querySelector('button[type="submit"]');
-        boton.disabled = true;
-        mostrar('Enviando…');
-
-        fetch(form.action, {
-          method: 'POST',
-          body: new FormData(form),
-          headers: { 'Accept': 'application/json' }
-        })
-          .then(function (r) {
-            return r.json().catch(function () { return { ok: false }; });
-          })
-          .then(function (datos) {
-            if (datos.ok) {
-              form.reset();
-              tiempo.value = String(Math.floor(Date.now() / 1000));
-              mostrar(datos.mensaje || '¡Gracias! Tu mensaje se envió. Te responderemos pronto.', 'ok');
-            } else {
-              mostrar(datos.mensaje || 'No se pudo enviar el mensaje. Intenta de nuevo o llámanos.', 'error');
-            }
-          })
-          .catch(function () {
-            mostrar('No se pudo enviar el mensaje. Revisa tu conexión e intenta de nuevo.', 'error');
-          })
-          .finally(function () { boton.disabled = false; });
-      });
-    })();
-  </script>
 
 </body>
 </html>
