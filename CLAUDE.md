@@ -13,6 +13,19 @@
 - Diseño responsivo: debe verse bien en celular.
 - Contenido en español (México).
 
+## Tipografía
+- Salvo que el usuario indique lo contrario, todo el sitio usa **IBM Plex Sans**:
+  - **Títulos** (h1 a h6): Semi Bold (**600**).
+  - **Navegación** (menús y sus enlaces): Medium (**500**).
+  - **Párrafos** y texto general: Regular (**400**).
+- Cárgala desde Google Fonts, solo con esos tres pesos, dentro del `<head>`:
+  ```html
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  ```
+- Fuentes de respaldo: `font-family: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;`
+
 ## Seguridad
 - Este repositorio es **público**: nunca guardes contraseñas, claves de API ni datos privados.
 
