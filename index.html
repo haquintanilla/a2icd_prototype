@@ -60,7 +60,6 @@
       display: flex;
       flex-wrap: wrap;
       align-items: center;
-      justify-content: flex-start; /* menú a la izquierda, junto a la marca */
       gap: 12px 32px;
     }
     .marca {
@@ -69,9 +68,12 @@
       color: inherit;
       text-decoration: none;
     }
+    /* Menú alineado a la derecha (también en celular) */
+    nav { margin-left: auto; }
     nav ul {
       display: flex;
       flex-wrap: wrap;
+      justify-content: flex-end;
       gap: 8px 24px;
       margin: 0;
       padding: 0;
@@ -84,6 +86,10 @@
       transition: color 0.2s;
     }
     nav a:hover, nav a:focus-visible { color: var(--texto-claro); text-decoration: underline; }
+    /* En celular, menos espacio entre enlaces para que quepan en un renglón */
+    @media (max-width: 720px) {
+      nav ul { column-gap: 16px; }
+    }
 
     /* 2. MAIN con sus 5 secciones */
     section {
